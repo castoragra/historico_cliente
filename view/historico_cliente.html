@@ -1,0 +1,37 @@
+{include="header2"}
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="text-left hidden-xs"><span class="text-capitalize">Referencia</span></th>
+                <th class="text-left">Artículo</th>
+                <th class="text-right hidden-xs" width="120">Precio en lista</th>
+                <th class="text-right hidden-xs" width="120">Última cantidad</th>
+                <th class="text-right" width="120">Último precio</th>
+                <th class="text-right" width="70">Cantidad</th>
+                <th class="text-right" width="70">Añadir</th>
+            </tr>
+        </thead>
+        {loop="$fsc->historico"}
+        <tr>
+            <td class="hidden-xs">
+                <a target="_blank" href="{$value->url}">{$value->referencia}</a>
+            </td>
+            <td>{$value->descripcion}</td>
+            <td class="text-right hidden-xs">{$fsc->show_precio($value->pvp_lista)}</td>
+            <td class="text-right hidden-xs">{$value->cantidad}</td>
+            <td class="text-right">{$fsc->show_precio($value->pvp)}</td>
+            <td class="text-right">
+                <input type="number" step="any" id="cantidad_{$value->referencia}" class="form-control text-right" name="cantidad_{$value->referencia}"
+                    value="{$value->cantidad}" autocomplete="off" />
+            </td>
+            <td class="text-right">
+                <a href="#" class="btn btn-sm btn-success" onclick="return add_linea_libre()" title="Añadir línea">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </td>
+        </tr>
+        {/loop}
+    </table>
+</div>
+{include="footer2"}
