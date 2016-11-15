@@ -22,6 +22,11 @@ class linea_historico
     */
     public $descripcion;
     /**
+      * Descripción del artículo codificada en Base64 para pasarla como parámetro.
+      * @var type 
+    */
+    public $enc_desc;
+    /**
       * Precio general del artículo.
       * @var type 
     */
@@ -36,6 +41,11 @@ class linea_historico
       * @var type 
     */
     public $pvp;
+    /**
+      * Código del impuesto del artículo
+      * @var type 
+    */
+    public $codimpuesto;
 
 
     public function __construct($l=FALSE)
@@ -45,19 +55,22 @@ class linea_historico
             $this->referencia = $l['referencia'];
             $this->url = $l['url'];
             $this->descripcion = $l['descripcion'];
+            $this->enc_desc = base64_encode($l['descripcion']);
             $this->pvp_lista = floatval($l['pvp_lista']);     
             $this->cantidad = floatval($l['cantidad']);
             $this->pvp = floatval($l['pvp']);
-      
+            $this->codimpuesto = $l['codimpuesto'];
         }
         else
         {
             $this->referencia = NULL;
             $this->url = '';
             $this->descripcion = '';
+            $this->enc_desc = '';
             $this->pvp_lista = 0;   
             $this->cantidad = 0;
             $this->pvp = 0;
+            $this->codimpuesto = 'IVA21';
         }
    }
 }

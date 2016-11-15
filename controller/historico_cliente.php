@@ -45,7 +45,8 @@ class historico_cliente extends fs_controller
                             'descripcion' => $linea->descripcion,
                             'cantidad' => $linea->cantidad,
                             'pvp' => $linea->pvpunitario,
-                            'pvp_lista' => $pvp_lista
+                            'pvp_lista' => $pvp_lista,
+                            'codimpuesto' => $linea->codimpuesto                        
                         ));
                         $this->historico[$linea->referencia] = $linea_historico;
                     }
