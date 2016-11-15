@@ -1,6 +1,6 @@
 <?php
-require_model('factura_cliente.php');
 require_model('articulo.php');
+require_model('factura_cliente.php');
 require_model('linea_historico.php');
  
 class historico_cliente extends fs_controller
@@ -20,9 +20,10 @@ class historico_cliente extends fs_controller
         $facturas = new factura_cliente();
         $cod_cliente = NULL;
 
-        if (isset($_REQUEST['id'])) 
+
+        if (isset($_REQUEST['cod'])) 
         {
-            $cod_cliente = $facturas->get($_REQUEST['id'])->codcliente;
+            $cod_cliente = $_REQUEST['cod'];
         }
 
         if ($cod_cliente)
@@ -36,7 +37,7 @@ class historico_cliente extends fs_controller
             foreach ($facturas_cliente as $factura) {
                 $lineas = $factura->get_lineas();
                 foreach ($lineas as $linea) {
-                    if(!$this->historico[$linea->referencia]){
+                    if($linea->referencia && !$this->historico[$linea->referencia]){
                         $pvp_lista = $articulo->get($linea->referencia)->pvp;
                         $linea_historico = new linea_historico (array(
                             'referencia' => $linea->referencia,
@@ -83,7 +84,7 @@ class historico_cliente extends fs_controller
           array(
               'name' => 'tab_historico',
               'page_from' => __CLASS__,
-              'page_to' => 'ventas_factura',
+              'page_to' => 'nueva_venta',
               'type' => 'tab',
               'text' => '<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Histórico</span>',
               'params' => ''
