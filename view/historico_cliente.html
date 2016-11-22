@@ -26,7 +26,7 @@
                     value="{$value->cantidad}" autocomplete="off" />
             </td>
             <td class="text-right">
-                <a class="btn btn-sm btn-success" title="Añadir línea" onclick="this.style.backgroundColor='#dd4b39';this.style.borderColor='#d73925';parent.add_articulo('{$value->referencia}','{$value->enc_desc}','{$value->pvp}','0','{$value->codimpuesto}','{$value->cantidad}'); this.onclick=null;">
+                <a class="btn btn-sm btn-success" title="Añadir línea" onclick="this.style.backgroundColor='#dd4b39';this.style.borderColor='#d73925';parent.add_articulo('{$value->referencia}','{$value->enc_desc}','{$value->pvp}','0','{$value->codimpuesto}',document.getElementById('cantidad_{$value->referencia}').value); this.onclick=null;">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </td>
